@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tattoo Blog | Stupidity Ink - Tips, Guide & Inspiration</title>
+    <meta name="description" content="Read our tattoo blog for aftercare tips, style guides, preparation advice, and inspiration for your next ink. Expert insights from Stupidity Ink, Chitwan, Nepal.">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .page-header {
+            padding: 60px 20px 40px;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .page-header p {
+            color: var(--accent);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            margin-bottom: 20px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover {
+            color: var(--text);
+        }
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .blog-filter-btn {
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--accent);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+        .blog-filter-btn:hover,
+        .blog-filter-btn.active {
+            background: var(--text);
+            color: var(--page-bg);
+            border-color: var(--text);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo"><img src="images/WhatsApp Image 2025-11-10 at 9.11.43 PM.jpeg" alt="Stupidity Ink Logo"></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="index.html#about">About & Contact</a></li>
+                    <li><a href="login.html" title="Admin Login">🔐</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="page-header">
+            <a href="index.html" class="back-link">← Back to Home</a>
+            <h1>Tattoo Blog</h1>
+            <p>Tips, inspiration, and everything you need to know about tattoos</p>
+        </section>
+
+        <section id="blog">
+            <div class="blog-container">
+                <!-- Filter Buttons -->
+                <div class="blog-filters">
+                    <button class="blog-filter-btn active" data-filter="all">All Posts</button>
+                    <button class="blog-filter-btn" data-filter="aftercare">Aftercare</button>
+                    <button class="blog-filter-btn" data-filter="guide">Guide</button>
+                    <button class="blog-filter-btn" data-filter="inspiration">Inspiration</button>
+                    <button class="blog-filter-btn" data-filter="tips">Tips</button>
+                    <button class="blog-filter-btn" data-filter="culture">Culture</button>
+                </div>
+
+                <div class="blog-grid">
+                    <!-- Blog Post 1 -->
+                    <article class="blog-card" data-category="aftercare">
+                        <div class="blog-card-image">
+                            <img src="images/blog-aftercare.jpg" alt="Tattoo Aftercare Guide" onerror="this.src='https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=400&h=250&fit=crop'">
+                        </div>
+                        <div class="blog-card-content">
+                            <span class="blog-category">Aftercare</span>
+                            <h3>Essential Tattoo Aftercare Tips</h3>
+                            <p>Your new tattoo is an investment. Learn how to properly care for it during the healing process to ensure vibrant, long-lasting results.</p>
+                            <div class="blog-meta">
+                                <span>5 min read</span>
+                                <span>Dec 2025</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 2 -->
+                    <article class="blog-card" data-category="guide">
+                        <div class="blog-card-image">
+                            <img src="images/blog-first-tattoo.jpg" alt="First Tattoo Guide" onerror="this.src='https://images.unsplash.com/photo-1590246814883-57c511e76a2d?w=400&h=250&fit=crop'">
+                        </div>
+                        <div class="blog-card-content">
+                            <span class="blog-category">Guide</span>
+                            <h3>Getting Your First Tattoo: What to Expect</h3>
+                            <p>Nervous about your first ink? We break down the entire process from consultation to completion, so you know exactly what to expect.</p>
+                            <div class="blog-meta">
+                                <span>7 min read</span>
+                                <span>Dec 2025</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 3 -->
+                    <article class="blog-card" data-category="inspiration">
+                        <div class="blog-card-image">
+                            <img src="images/blog-styles.jpg" alt="Tattoo Styles Guide" onerror="this.src='https://images.unsplash.com/photo-1542359649-31e03cd4d909?w=400&h=250&fit=crop'">
+                        </div>
+                        <div class="blog-card-content">
+                            <span class="blog-category">Inspiration</span>
+                            <h3>Popular Tattoo Styles Explained</h3>
+                            <p>From traditional to realism, watercolor to geometric—explore different tattoo styles to find the perfect match for your vision.</p>
+                            <div class="blog-meta">
+                                <span>6 min read</span>
+                                <span>Nov 2025</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 4 -->
+                    <article class="blog-card" data-category="tips">
+                        <div class="blog-card-image">
+                            <img src="images/blog-placement.jpg" alt="Tattoo Placement Guide" onerror="this.src='https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=400&h=250&fit=crop'">
+                        </div>
+                        <div class="blog-card-content">
+                            <span class="blog-category">Tips</span>
+                            <h3>Choosing the Right Tattoo Placement</h3>
+                            <p>Placement matters! Learn about pain levels, visibility, and how different body areas affect your tattoo's appearance over time.</p>
+                            <div class="blog-meta">
+                                <span>4 min read</span>
+                                <span>Nov 2025</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 5 -->
+                    <article class="blog-card" data-category="culture">
+                        <div class="blog-card-image">
+                            <img src="images/blog-meaning.jpg" alt="Tattoo Meanings" onerror="this.src='https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=400&h=250&fit=crop'">
+                        </div>
+                        <div class="blog-card-content">
+                            <span class="blog-category">Culture</span>
+                            <h3>Symbolic Tattoo Meanings Around the World</h3>
+                            <p>Discover the rich history and cultural significance behind popular tattoo symbols from Nepal and around the globe.</p>
+                            <div class="blog-meta">
+                                <span>8 min read</span>
+                                <span>Oct 2025</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 6 -->
+                    <article class="blog-card" data-category="guide">
+                        <div class="blog-card-image">
+                            <img src="images/blog-prepare.jpg" alt="Tattoo Preparation" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop'">
+                        </div>
+                        <div class="blog-card-content">
+                            <span class="blog-category">Guide</span>
+                            <h3>How to Prepare for Your Tattoo Session</h3>
+                            <p>Maximize your tattoo experience with these preparation tips: what to eat, wear, and do before your appointment.</p>
+                            <div class="blog-meta">
+                                <span>3 min read</span>
+                                <span>Oct 2025</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 7 -->
+                    <article class="blog-card" data-category="aftercare">
+                        <div class="blog-card-image">
+                            <img src="images/blog-healing.jpg" alt="Tattoo Healing Stages" onerror="this.src='https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=400&h=250&fit=crop'">
+                        </div>
+                        <div class="blog-card-content">
+                            <span class="blog-category">Aftercare</span>
+                            <h3>Understanding the Tattoo Healing Stages</h3>
+                            <p>From fresh ink to fully healed—learn what happens during each stage of the healing process and how to handle common concerns.</p>
+                            <div class="blog-meta">
+                                <span>6 min read</span>
+                                <span>Oct 2025</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 8 -->
+                    <article class="blog-card" data-category="inspiration">
+                        <div class="blog-card-image">
+                            <img src="images/blog-nepali.jpg" alt="Nepali Tattoo Designs" onerror="this.src='https://images.unsplash.com/photo-1516245556508-7d60d4ff0f39?w=400&h=250&fit=crop'">
+                        </div>
+                        <div class="blog-card-content">
+                            <span class="blog-category">Inspiration</span>
+                            <h3>Traditional Nepali Tattoo Designs</h3>
+                            <p>Explore the beautiful heritage of Nepali tattoo art, from ancient tribal patterns to modern interpretations of cultural symbols.</p>
+                            <div class="blog-meta">
+                                <span>7 min read</span>
+                                <span>Sep 2025</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 9 -->
+                    <article class="blog-card" data-category="tips">
+                        <div class="blog-card-image">
+                            <img src="images/blog-color.jpg" alt="Color vs Black Tattoos" onerror="this.src='https://images.unsplash.com/photo-1475180429048-afbb3f7cb1e4?w=400&h=250&fit=crop'">
+                        </div>
+                        <div class="blog-card-content">
+                            <span class="blog-category">Tips</span>
+                            <h3>Color vs Black & Grey: Which is Right for You?</h3>
+                            <p>Deciding between color and black & grey? Learn about longevity, skin tone considerations, and what works best for different designs.</p>
+                            <div class="blog-meta">
+                                <span>5 min read</span>
+                                <span>Sep 2025</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="images/WhatsApp Image 2025-11-10 at 9.11.43 PM.jpeg" alt="Stupidity Ink Logo">
+                </div>
+                <p class="footer-tagline">Every piece is a story. Crafted with care, precision and passion.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="index.html#about">About & Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h4>Get In Touch</h4>
+                <p>📍 Chitwan, Nepal</p>
+                <p>📧 stupidityink@email.com</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook" title="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Instagram" title="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="#" aria-label="TikTok" title="TikTok">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <p>&copy; 2025 Stupidity Ink. All rights reserved.</p>
+                <p class="footer-made">Made with 🖤 in Nepal</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Blog Filter Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.blog-filter-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filter = this.dataset.filter;
+
+                    // Filter cards
+                    blogCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeIn 0.4s ease';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</body>
+</html>
