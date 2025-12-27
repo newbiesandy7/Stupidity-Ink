@@ -15,6 +15,42 @@
             padding-top: 120px; /* Adjust based on header height */
             margin-top: -80px;
         }
+        /* Pagination Styles */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .pagination button {
+            padding: 10px 18px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: var(--text);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+        .pagination button:hover:not(:disabled) {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+        }
+        .pagination button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .pagination button.active {
+            background: var(--text);
+            color: var(--page-bg);
+            border-color: var(--text);
+        }
+        .pagination .page-info {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -27,6 +63,7 @@
                     <li><a href="#home">Home</a></li>
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#about">About & Contact</a></li>
+                    <li><a href="login.html" title="Admin Login">🔐</a></li>
                 </ul>
             </nav>
         </div>
@@ -48,16 +85,15 @@
             <div class="container">
                 <h2 class="section-title">The Artwork Gallery</h2>
 
-                <div class="gallery-grid">
-                    <div class="gallery-item"><a href="#" class="gallery-link" data-index="0"><img loading="lazy" src="images/FullSizeRender.jpg" data-full="images/FullSizeRender.jpg" alt="Custom Black and Grey Dragon Tattoo by Stupidity Ink, Chitwan"></a></div>
+                <div class="gallery-grid" id="gallery-grid">
+                    <!-- Images will be loaded dynamically with pagination -->
+                </div>
 
-                    <div class="gallery-item"><a href="#" class="gallery-link" data-index="1"><img loading="lazy" src="images/IMG_6796.JPG" data-full="images/IMG_6796.JPG" alt="Vibrant Color Flower Sleeve Tattoo by Nepali Artist"></a></div>
-
-                    <div class="gallery-item"><a href="#" class="gallery-link" data-index="2"><img loading="lazy" src="images/Screenshot 2025-11-11 075148.png" data-full="images/Screenshot 2025-11-11 075148.png" alt="Nepali Traditional Style Tattoo Design by Stupidity Ink"></a></div>
-
-                    <div class="gallery-item"><a href="#" class="gallery-link" data-index="3"><img loading="lazy" src="images/Screenshot 2025-11-11 075133.png" data-full="images/Screenshot 2025-11-11 075133.png" alt="Fine Line Geometric Tattoo Art"></a></div>
-                    <div class="gallery-item"><a href="#" class="gallery-link" data-index="4"><img loading="lazy" src="images/Screenshot 2025-11-11 075115.png" data-full="images/Screenshot 2025-11-11 075115.png" alt="Realistic Portrait Tattoo"></a></div>
-                    <div class="gallery-item"><a href="#" class="gallery-link" data-index="5"><img loading="lazy" src="images/Screenshot 2025-11-11 080857.png" data-full="images/Screenshot 2025-11-11 080857.png" alt="Large Custom Back Piece Tattoo"></a></div>
+                <!-- Pagination Controls -->
+                <div class="pagination" id="pagination">
+                    <button id="prevPage" onclick="changePage(-1)">◀ Prev</button>
+                    <span class="page-info" id="pageInfo">Page 1 of 1</span>
+                    <button id="nextPage" onclick="changePage(1)">Next ▶</button>
                 </div>
 
                 <!-- Lightbox / Image viewer -->
@@ -112,8 +148,111 @@
 
 </body>
     <script>
-        (function(){
-            const images = Array.from(document.querySelectorAll('.gallery-link img')).map(img => ({ src: img.getAttribute('data-full') || img.getAttribute('src'), alt: img.getAttribute('alt') }));
+        // Gallery Configuration
+        const IMAGES_PER_PAGE = 9; // Number of images per page
+        let currentPage = 1;
+        let allImages = [];
+
+        // Static images (existing gallery)
+        const staticImages = [
+            { src: 'images/FullSizeRender.jpg', alt: 'Custom Black and Grey Dragon Tattoo by Stupidity Ink, Chitwan' },
+            { src: 'images/IMG_6796.JPG', alt: 'Vibrant Color Flower Sleeve Tattoo by Nepali Artist' },
+            { src: 'images/Screenshot 2025-11-11 075148.png', alt: 'Nepali Traditional Style Tattoo Design by Stupidity Ink' },
+            { src: 'images/Screenshot 2025-11-11 075133.png', alt: 'Fine Line Geometric Tattoo Art' },
+            { src: 'images/Screenshot 2025-11-11 075115.png', alt: 'Realistic Portrait Tattoo' },
+            { src: 'images/Screenshot 2025-11-11 080857.png', alt: 'Large Custom Back Piece Tattoo' }
+        ];
+
+        // Load all images (static + uploaded from database)
+        async function loadAllImages() {
+            // Start with static images
+            allImages = [...staticImages];
+
+            try {
+                const response = await fetch('server/images.php');
+                const data = await response.json();
+                
+                if (data.success && data.images && data.images.length > 0) {
+                    // Add uploaded images
+                    data.images.forEach(image => {
+                        allImages.push({
+                            src: image.filepath,
+                            alt: image.alt || 'Tattoo artwork by Stupidity Ink',
+                            id: image.id // Keep track of DB images
+                        });
+                    });
+                }
+            } catch (error) {
+                console.log('Could not load uploaded images:', error);
+            }
+
+            // Render first page
+            renderGallery();
+            updatePagination();
+        }
+
+        // Render gallery for current page
+        function renderGallery() {
+            const galleryGrid = document.getElementById('gallery-grid');
+            const startIndex = (currentPage - 1) * IMAGES_PER_PAGE;
+            const endIndex = startIndex + IMAGES_PER_PAGE;
+            const pageImages = allImages.slice(startIndex, endIndex);
+
+            galleryGrid.innerHTML = pageImages.map((img, index) => `
+                <div class="gallery-item">
+                    <a href="#" class="gallery-link" data-index="${startIndex + index}">
+                        <img loading="lazy" 
+                             src="${img.src}" 
+                             data-full="${img.src}" 
+                             alt="${img.alt}">
+                    </a>
+                </div>
+            `).join('');
+
+            // Reinitialize lightbox
+            initLightbox();
+        }
+
+        // Change page
+        function changePage(delta) {
+            const totalPages = Math.ceil(allImages.length / IMAGES_PER_PAGE);
+            const newPage = currentPage + delta;
+            
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                renderGallery();
+                updatePagination();
+                
+                // Scroll to gallery section
+                document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Go to specific page
+        function goToPage(page) {
+            currentPage = page;
+            renderGallery();
+            updatePagination();
+        }
+
+        // Update pagination controls
+        function updatePagination() {
+            const totalPages = Math.ceil(allImages.length / IMAGES_PER_PAGE);
+            const pageInfo = document.getElementById('pageInfo');
+            const prevBtn = document.getElementById('prevPage');
+            const nextBtn = document.getElementById('nextPage');
+            const pagination = document.getElementById('pagination');
+
+            pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+
+            // Hide pagination if only one page
+            pagination.style.display = totalPages <= 1 ? 'none' : 'flex';
+        }
+
+        // Lightbox functionality
+        function initLightbox() {
             const lightbox = document.getElementById('lightbox');
             const lbImage = document.getElementById('lightbox-image');
             const lbCaption = document.getElementById('lightbox-caption');
@@ -123,29 +262,24 @@
             let current = 0;
             let lastFocused = null;
 
-            // focusable selectors for trap
             const FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
             function open(index){
                 current = index;
-                // preload
                 const img = new Image();
                 lightbox.classList.add('open');
                 lightbox.setAttribute('aria-hidden', 'false');
-                // hide main content from screen readers
                 document.querySelector('main').setAttribute('aria-hidden', 'true');
                 lastFocused = document.activeElement;
                 document.body.style.overflow = 'hidden';
                 lbImage.style.opacity = 0.01;
                 lbCaption.textContent = 'Loading...';
                 img.onload = function(){
-                        lbImage.src = images[current].src;
-                        lbImage.alt = images[current].alt || '';
-                        // do not display alt text in caption by default; hide caption
-                        lbCaption.textContent = '';
-                        lbCaption.style.display = 'none';
-                        lbImage.style.opacity = 1;
-                    // move focus to close button when loaded
+                    lbImage.src = allImages[current].src;
+                    lbImage.alt = allImages[current].alt || '';
+                    lbCaption.textContent = '';
+                    lbCaption.style.display = 'none';
+                    lbImage.style.opacity = 1;
                     closeBtn.focus();
                 };
                 img.onerror = function(){
@@ -153,7 +287,7 @@
                     lbCaption.style.display = 'block';
                     lbImage.style.opacity = 1;
                 };
-                img.src = images[current].src;
+                img.src = allImages[current].src;
             }
 
             function close(){
@@ -161,15 +295,21 @@
                 lightbox.setAttribute('aria-hidden', 'true');
                 document.querySelector('main').setAttribute('aria-hidden', 'false');
                 document.body.style.overflow = '';
-                // restore focus
                 if(lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
             }
 
             function showNext(delta){
-                current = (current + delta + images.length) % images.length;
+                current = (current + delta + allImages.length) % allImages.length;
                 open(current);
             }
 
+            // Remove old event listeners by cloning elements
+            document.querySelectorAll('.gallery-link').forEach(link => {
+                const newLink = link.cloneNode(true);
+                link.parentNode.replaceChild(newLink, link);
+            });
+
+            // Add fresh event listeners
             document.querySelectorAll('.gallery-link').forEach(link => {
                 link.addEventListener('click', function(e){
                     e.preventDefault();
@@ -178,68 +318,71 @@
                 });
             });
 
-            closeBtn.addEventListener('click', close);
-            prevBtn.addEventListener('click', function(){ showNext(-1); });
-            nextBtn.addEventListener('click', function(){ showNext(1); });
+            closeBtn.onclick = close;
+            prevBtn.onclick = function(){ showNext(-1); };
+            nextBtn.onclick = function(){ showNext(1); };
 
-            lightbox.addEventListener('click', function(e){
+            lightbox.onclick = function(e){
                 if(e.target === lightbox) close();
-            });
+            };
 
-            // Swipe support for touch devices
+            // Swipe support
             (function addSwipe(){
-                let startX = 0;
-                let startY = 0;
-                let isMoving = false;
+                let startX = 0, startY = 0, isMoving = false;
 
-                lightbox.addEventListener('touchstart', function(e){
+                lightbox.ontouchstart = function(e){
                     if(!lightbox.classList.contains('open')) return;
                     const t = e.touches[0];
                     startX = t.clientX; startY = t.clientY; isMoving = true;
-                }, {passive: true});
+                };
 
-                lightbox.addEventListener('touchmove', function(e){
+                lightbox.ontouchmove = function(e){
                     if(!isMoving) return;
-                    // prevent page scroll when moving horizontally
                     const t = e.touches[0];
                     const dx = t.clientX - startX;
                     const dy = t.clientY - startY;
                     if(Math.abs(dx) > Math.abs(dy)) e.preventDefault();
-                }, {passive: false});
+                };
 
-                lightbox.addEventListener('touchend', function(e){
+                lightbox.ontouchend = function(e){
                     if(!isMoving) return; isMoving = false;
                     const t = e.changedTouches[0];
                     const dx = t.clientX - startX;
-                    const dy = t.clientY - startY;
                     const absDx = Math.abs(dx);
-                    const absDy = Math.abs(dy);
-                    // require a mostly-horizontal swipe and a threshold
+                    const absDy = Math.abs(t.clientY - startY);
                     if(absDx > 40 && absDx > absDy) {
                         if(dx < 0) showNext(1); else showNext(-1);
                     }
-                }, {passive: true});
+                };
             })();
 
-            document.addEventListener('keydown', function(e){
-                if(lightbox.classList.contains('open')){
-                    if(e.key === 'Escape') close();
-                    if(e.key === 'ArrowRight') showNext(1);
-                    if(e.key === 'ArrowLeft') showNext(-1);
-                    if(e.key === 'Tab') {
-                        // basic focus trap
-                        const focusables = Array.from(lightbox.querySelectorAll(FOCUSABLE)).filter(el => el.offsetParent !== null);
-                        if(focusables.length === 0) return;
-                        const first = focusables[0];
-                        const last = focusables[focusables.length - 1];
-                        if(e.shiftKey && document.activeElement === first){
-                            e.preventDefault(); last.focus();
-                        } else if(!e.shiftKey && document.activeElement === last){
-                            e.preventDefault(); first.focus();
+            // Keyboard navigation (only set once)
+            if (!window.lightboxKeyboardSet) {
+                window.lightboxKeyboardSet = true;
+                document.addEventListener('keydown', function(e){
+                    if(lightbox.classList.contains('open')){
+                        if(e.key === 'Escape') close();
+                        if(e.key === 'ArrowRight') showNext(1);
+                        if(e.key === 'ArrowLeft') showNext(-1);
+                        if(e.key === 'Tab') {
+                            const focusables = Array.from(lightbox.querySelectorAll(FOCUSABLE)).filter(el => el.offsetParent !== null);
+                            if(focusables.length === 0) return;
+                            const first = focusables[0];
+                            const last = focusables[focusables.length - 1];
+                            if(e.shiftKey && document.activeElement === first){
+                                e.preventDefault(); last.focus();
+                            } else if(!e.shiftKey && document.activeElement === last){
+                                e.preventDefault(); first.focus();
+                            }
                         }
                     }
-                }
-            });
-        })();
+                });
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAllImages();
+        });
     </script>
 </html>

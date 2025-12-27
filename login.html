@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Stupidity Ink</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: var(--surface);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .login-box h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+        .login-box p {
+            text-align: center;
+            color: var(--accent);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--text);
+            color: var(--page-bg);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,255,255,0.15);
+        }
+
+        .error-message {
+            background: rgba(255, 77, 77, 0.1);
+            border: 1px solid rgba(255, 77, 77, 0.3);
+            color: #ff6b6b;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+
+        .logo-login {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-login img {
+            height: 60px;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo-login">
+                <img src="images/WhatsApp Image 2025-11-10 at 9.11.43 PM.jpeg" alt="Stupidity Ink Logo">
+            </div>
+            <h1>Admin Login</h1>
+            <p>Sign in to manage gallery</p>
+            
+            <div class="error-message" id="errorMessage">
+                Invalid username or password
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter password">
+                </div>
+
+                <button type="submit" class="login-btn">Sign In</button>
+            </form>
+
+            <a href="index.html" class="back-link">← Back to Website</a>
+        </div>
+    </div>
+
+    <script>
+        // API Base URL - Change this if your server is at a different location
+        const API_URL = 'server';
+
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            try {
+                const response = await fetch(`${API_URL}/login.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Store token in localStorage
+                    localStorage.setItem('adminToken', data.token);
+                    localStorage.setItem('adminUser', username);
+                    // Redirect to admin panel
+                    window.location.href = 'admin.html';
+                } else {
+                    errorMessage.style.display = 'block';
+                    errorMessage.textContent = data.message || 'Invalid username or password';
+                }
+            } catch (error) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'Server connection failed. Make sure XAMPP/PHP server is running.';
+                console.error('Login error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
