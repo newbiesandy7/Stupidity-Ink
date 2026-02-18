@@ -83,7 +83,7 @@
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="gallery.html" class="active">Gallery</a></li>
-                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="index.html#article">Article</a></li>
                     <li><a href="index.html#about">About & Contact</a></li>
                     <li><a href="login.html" title="Admin Login">🔐</a></li>
                 </ul>
@@ -139,7 +139,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="index.html#article">Article</a></li>
                     <li><a href="index.html#about">About & Contact</a></li>
                 </ul>
             </div>
@@ -175,21 +175,34 @@
         const IMAGES_PER_PAGE = 12;
         let currentPage = 1;
         let allImages = [];
+        let siteConfig = null;
 
-        // Static images (existing gallery)
-        const staticImages = [
-            { src: 'images/FullSizeRender.jpg', alt: 'Custom Black and Grey Dragon Tattoo by Stupidity Ink, Chitwan' },
-            { src: 'images/IMG_6796.JPG', alt: 'Vibrant Color Flower Sleeve Tattoo by Nepali Artist' },
-            { src: 'images/Screenshot 2025-11-11 075148.png', alt: 'Nepali Traditional Style Tattoo Design by Stupidity Ink' },
-            { src: 'images/Screenshot 2025-11-11 075133.png', alt: 'Fine Line Geometric Tattoo Art' },
-            { src: 'images/Screenshot 2025-11-11 075115.png', alt: 'Realistic Portrait Tattoo' },
-            { src: 'images/Screenshot 2025-11-11 080857.png', alt: 'Large Custom Back Piece Tattoo' }
-        ];
+        // Load images from JSON config
+        async function loadImageConfig() {
+            try {
+                const response = await fetch('images.json');
+                siteConfig = await response.json();
+                return siteConfig;
+            } catch (error) {
+                console.error('Could not load images.json:', error);
+                return null;
+            }
+        }
 
-        // Load all images (static + uploaded from database)
+        // Load all images (from JSON + uploaded from database)
         async function loadAllImages() {
-            allImages = [...staticImages];
+            // First load from JSON config
+            const config = await loadImageConfig();
+            
+            if (config && config.gallery) {
+                allImages = config.gallery.map(img => ({
+                    src: img.src,
+                    alt: img.alt,
+                    category: img.category
+                }));
+            }
 
+            // Then add uploaded images from database
             try {
                 const response = await fetch('server/images.php');
                 const data = await response.json();

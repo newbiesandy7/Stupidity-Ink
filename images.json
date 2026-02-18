@@ -1,0 +1,167 @@
+{
+  "site": {
+    "logo": {
+      "src": "images/WhatsApp Image 2025-11-10 at 9.11.43 PM.jpeg",
+      "alt": "Stupidity Ink Logo"
+    },
+    "article": {
+      "src": "https://republicaimg.nagariknewscdn.com/shared/web/uploads/media/tatoo.jpg",
+      "alt": "Inking to Heal - Stupidity Ink Story",
+      "link": "https://myrepublica.nagariknetwork.com/news/inking-to-heal/",
+      "title": "Inking to Heal",
+      "source": "My Republica",
+      "date": "May 2019"
+    }
+  },
+  "gallery": [
+    {
+      "id": 1,
+      "src": "images/FullSizeRender.jpg",
+      "alt": "Custom Black and Grey Dragon Tattoo by Stupidity Ink, Chitwan",
+      "category": "black-grey"
+    },
+    {
+      "id": 2,
+      "src": "images/IMG_6796.JPG",
+      "alt": "Vibrant Color Flower Sleeve Tattoo by Nepali Artist",
+      "category": "color"
+    },
+    {
+      "id": 3,
+      "src": "images/Screenshot 2025-11-11 075148.png",
+      "alt": "Nepali Traditional Style Tattoo Design by Stupidity Ink",
+      "category": "traditional"
+    },
+    {
+      "id": 4,
+      "src": "images/Screenshot 2025-11-11 075133.png",
+      "alt": "Fine Line Geometric Tattoo Art",
+      "category": "geometric"
+    },
+    {
+      "id": 5,
+      "src": "images/Screenshot 2025-11-11 075115.png",
+      "alt": "Realistic Portrait Tattoo",
+      "category": "portrait"
+    },
+    {
+      "id": 6,
+      "src": "images/Screenshot 2025-11-11 080857.png",
+      "alt": "Large Custom Back Piece Tattoo",
+      "category": "custom"
+    },
+    {
+      "id": 7,
+      "src": "images/Screenshot 2025-11-10 204220.png",
+      "alt": "Tattoo artwork by Stupidity Ink",
+      "category": "custom"
+    },
+    {
+      "id": 8,
+      "src": "images/Screenshot 2025-11-10 204332.png",
+      "alt": "Tattoo artwork by Stupidity Ink",
+      "category": "custom"
+    }
+  ],
+  "blog": [
+    {
+      "id": 1,
+      "src": "images/blog-aftercare.jpg",
+      "fallback": "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=400&h=250&fit=crop",
+      "alt": "Tattoo Aftercare Guide",
+      "category": "Aftercare",
+      "title": "Essential Tattoo Aftercare Tips",
+      "description": "Your new tattoo is an investment. Learn how to properly care for it during the healing process to ensure vibrant, long-lasting results.",
+      "readTime": "5 min read",
+      "date": "Dec 2025"
+    },
+    {
+      "id": 2,
+      "src": "images/blog-first-tattoo.jpg",
+      "fallback": "https://images.unsplash.com/photo-1590246814883-57c511e76a2d?w=400&h=250&fit=crop",
+      "alt": "First Tattoo Guide",
+      "category": "Guide",
+      "title": "Getting Your First Tattoo: What to Expect",
+      "description": "Nervous about your first ink? We break down the entire process from consultation to completion, so you know exactly what to expect.",
+      "readTime": "7 min read",
+      "date": "Dec 2025"
+    },
+    {
+      "id": 3,
+      "src": "images/blog-styles.jpg",
+      "fallback": "https://images.unsplash.com/photo-1542359649-31e03cd4d909?w=400&h=250&fit=crop",
+      "alt": "Tattoo Styles Guide",
+      "category": "Inspiration",
+      "title": "Popular Tattoo Styles Explained",
+      "description": "From traditional to realism, watercolor to geometric—explore different tattoo styles to find the perfect match for your vision.",
+      "readTime": "6 min read",
+      "date": "Nov 2025"
+    },
+    {
+      "id": 4,
+      "src": "images/blog-placement.jpg",
+      "fallback": "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=400&h=250&fit=crop",
+      "alt": "Tattoo Placement Guide",
+      "category": "Guide",
+      "title": "Best Tattoo Placement Ideas",
+      "description": "Choosing the right placement is crucial. Discover the best spots for different tattoo styles and sizes.",
+      "readTime": "5 min read",
+      "date": "Nov 2025"
+    },
+    {
+      "id": 5,
+      "src": "images/blog-meaning.jpg",
+      "fallback": "https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=400&h=250&fit=crop",
+      "alt": "Tattoo Meanings",
+      "category": "Inspiration",
+      "title": "Meaningful Tattoo Symbols",
+      "description": "Explore the deeper meanings behind popular tattoo symbols and find inspiration for your next meaningful piece.",
+      "readTime": "8 min read",
+      "date": "Oct 2025"
+    },
+    {
+      "id": 6,
+      "src": "images/blog-prepare.jpg",
+      "fallback": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop",
+      "alt": "Tattoo Preparation",
+      "category": "Guide",
+      "title": "How to Prepare for Your Tattoo Session",
+      "description": "Getting ready for your appointment? Here's everything you need to do before, during, and immediately after.",
+      "readTime": "4 min read",
+      "date": "Oct 2025"
+    },
+    {
+      "id": 7,
+      "src": "images/blog-healing.jpg",
+      "fallback": "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=400&h=250&fit=crop",
+      "alt": "Tattoo Healing Stages",
+      "category": "Aftercare",
+      "title": "Understanding Tattoo Healing Stages",
+      "description": "Week by week guide to what your tattoo should look like as it heals, and when to seek help.",
+      "readTime": "6 min read",
+      "date": "Sep 2025"
+    },
+    {
+      "id": 8,
+      "src": "images/blog-nepali.jpg",
+      "fallback": "https://images.unsplash.com/photo-1516245556508-7d60d4ff0f39?w=400&h=250&fit=crop",
+      "alt": "Nepali Tattoo Designs",
+      "category": "Culture",
+      "title": "Traditional Nepali Tattoo Designs",
+      "description": "Discover the rich history and cultural significance of traditional Nepali tattoo art and symbolism.",
+      "readTime": "7 min read",
+      "date": "Sep 2025"
+    },
+    {
+      "id": 9,
+      "src": "images/blog-color.jpg",
+      "fallback": "https://images.unsplash.com/photo-1475180429048-afbb3f7cb1e4?w=400&h=250&fit=crop",
+      "alt": "Color vs Black Tattoos",
+      "category": "Guide",
+      "title": "Color vs Black & Grey: Which is Right for You?",
+      "description": "Compare the pros and cons of color tattoos versus black and grey to make the best choice for your piece.",
+      "readTime": "5 min read",
+      "date": "Aug 2025"
+    }
+  ]
+}
