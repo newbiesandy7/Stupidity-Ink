@@ -206,10 +206,11 @@
             renderGalleryPreview();
         }
 
-        // Render gallery preview (limited images)
+        // Render gallery preview (limited images - show newest first)
         function renderGalleryPreview() {
             const galleryGrid = document.getElementById('gallery-grid');
-            const previewImages = allImages.slice(0, PREVIEW_LIMIT);
+            // Reverse to show newest images first on homepage
+            const previewImages = [...allImages].reverse().slice(0, PREVIEW_LIMIT);
 
             galleryGrid.innerHTML = previewImages.map((img, index) => `
                 <div class="gallery-item">
@@ -235,7 +236,8 @@
             const nextBtn = document.getElementById('lightbox-next');
             let current = 0;
             let lastFocused = null;
-            const previewImages = allImages.slice(0, PREVIEW_LIMIT);
+            // Use same reversed order as the preview
+            const previewImages = [...allImages].reverse().slice(0, PREVIEW_LIMIT);
 
             function open(index){
                 current = index;
