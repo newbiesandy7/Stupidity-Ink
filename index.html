@@ -192,7 +192,7 @@
 
         // Load images (from JSON + uploaded from database)
         async function loadAllImages() {
-            // First load from JSON config
+            // Load images from JSON config (managed via Decap CMS)
             const config = await loadImageConfig();
             
             if (config && config.gallery) {
@@ -201,24 +201,6 @@
                     alt: img.alt,
                     category: img.category
                 }));
-            }
-
-            // Then add uploaded images from database
-            try {
-                const response = await fetch('server/images.php');
-                const data = await response.json();
-                
-                if (data.success && data.images && data.images.length > 0) {
-                    data.images.forEach(image => {
-                        allImages.push({
-                            src: image.filepath,
-                            alt: image.alt || 'Tattoo artwork by Stupidity Ink',
-                            id: image.id
-                        });
-                    });
-                }
-            } catch (error) {
-                console.log('Could not load uploaded images:', error);
             }
 
             renderGalleryPreview();
@@ -400,4 +382,17 @@
         </div>
     </footer>
 
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+    </script>
 </html>

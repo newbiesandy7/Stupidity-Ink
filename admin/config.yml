@@ -1,0 +1,88 @@
+backend:
+  name: git-gateway
+  branch: main # or master, depending on your default branch
+
+# Netlify Large Media support (optional, for large images)
+media_folder: "images"
+public_folder: "/images"
+
+# Site URL for previews
+site_url: https://your-site-name.netlify.app
+
+# Logo for the CMS
+logo_url: /images/WhatsApp%20Image%202025-11-10%20at%209.11.43%20PM.jpeg
+
+collections:
+  # Gallery Images Collection
+  - name: "data"
+    label: "Site Data"
+    files:
+      - name: "images"
+        label: "Images & Content"
+        file: "images.json"
+        format: "json"
+        fields:
+          # Site Settings
+          - name: "site"
+            label: "Site Settings"
+            widget: "object"
+            fields:
+              - name: "logo"
+                label: "Logo"
+                widget: "object"
+                fields:
+                  - { name: "src", label: "Logo Image", widget: "image" }
+                  - { name: "alt", label: "Alt Text", widget: "string" }
+              - name: "article"
+                label: "Featured Article"
+                widget: "object"
+                fields:
+                  - { name: "src", label: "Article Image", widget: "image" }
+                  - { name: "alt", label: "Alt Text", widget: "string" }
+                  - { name: "link", label: "Article URL", widget: "string" }
+                  - { name: "title", label: "Title", widget: "string" }
+                  - { name: "source", label: "Source", widget: "string" }
+                  - { name: "date", label: "Date", widget: "string" }
+
+          # Gallery
+          - name: "gallery"
+            label: "Gallery Images"
+            widget: "list"
+            summary: "{{fields.alt}}"
+            fields:
+              - { name: "id", label: "ID", widget: "number", value_type: "int" }
+              - { name: "src", label: "Image", widget: "image" }
+              - { name: "alt", label: "Alt Text / Description", widget: "string" }
+              - name: "category"
+                label: "Category"
+                widget: "select"
+                options:
+                  - { label: "Black & Grey", value: "black-grey" }
+                  - { label: "Color", value: "color" }
+                  - { label: "Traditional", value: "traditional" }
+                  - { label: "Geometric", value: "geometric" }
+                  - { label: "Portrait", value: "portrait" }
+                  - { label: "Custom", value: "custom" }
+
+          # Blog Posts
+          - name: "blog"
+            label: "Blog Posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { name: "id", label: "ID", widget: "number", value_type: "int" }
+              - { name: "src", label: "Image", widget: "image" }
+              - { name: "fallback", label: "Fallback Image URL", widget: "string", required: false }
+              - { name: "alt", label: "Alt Text", widget: "string" }
+              - name: "category"
+                label: "Category"
+                widget: "select"
+                options:
+                  - { label: "Aftercare", value: "Aftercare" }
+                  - { label: "Guide", value: "Guide" }
+                  - { label: "Inspiration", value: "Inspiration" }
+                  - { label: "Culture", value: "Culture" }
+              - { name: "title", label: "Title", widget: "string" }
+              - { name: "description", label: "Description", widget: "text" }
+              - { name: "readTime", label: "Read Time", widget: "string", default: "5 min read" }
+              - { name: "date", label: "Date", widget: "string" }
