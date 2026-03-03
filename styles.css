@@ -459,7 +459,7 @@ a:hover { color: var(--accent); }
     .hero { min-height: 60vh; }
     .hero-content h1 { font-size: 2rem; }
     .hero-sub { font-size: 1rem; padding: 0 10px; }
-    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     
     .footer-content {
         grid-template-columns: 1fr;
