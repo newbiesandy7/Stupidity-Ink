@@ -62,7 +62,12 @@
       "alt": "full arm tattoo ganesh and geometric",
       "category": "geometric"
     },
-    {}
+    {
+      "id": 10,
+      "src": "/images/img_2630.jpg.jpeg",
+      "alt": "line tattoo",
+      "category": "traditional"
+    }
   ],
   "blog": [
     {
