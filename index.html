@@ -12,7 +12,7 @@
             scroll-behavior: smooth;
         }
         .section-padding {
-            padding-top: 120px; /* Adjust based on header height */
+            padding-top: 120px;
             margin-top: -80px;
         }
         /* Pagination Styles */
@@ -80,17 +80,20 @@
                 <a href="#gallery" class="cta-button">View the Artwork</a>
             </div>
         </section>
+
         <section id="gallery" class="section-padding">
             <div class="container">
                 <h2 class="section-title">The Artwork Gallery</h2>
 
                 <div class="gallery-grid" id="gallery-grid">
-                    <!-- Images will be loaded dynamically (limited preview) -->
+                    <!-- Images will be loaded dynamically -->
                 </div>
 
-                <!-- View More Button -->
-                <div class="section-cta">
-                    <a href="gallery.html" class="cta-button">View More Artwork →</a>
+                <!-- Pagination Controls Added Here -->
+                <div class="pagination" id="pagination">
+                    <button id="prevPage" onclick="changePage(-1)">◀ Prev</button>
+                    <span class="page-info" id="pageInfo">Page 1 of 1</span>
+                    <button id="nextPage" onclick="changePage(1)">Next ▶</button>
                 </div>
 
                 <!-- Lightbox / Image viewer -->
@@ -127,7 +130,7 @@
                     <ul style="list-style: none; padding: 20px 0; line-height: 2.2;">
                         <li>Address: Chaubiskoti, Chitwan, Nepal</li>
                         <li>Phone: <a href="tel:+9779845066612">+977 9845066612</a></li>
-                        <li>Email: <a href="mailto:[your.email@example.com]">stupidityink@gmail.com</a></li>
+                        <li>Email: <a href="mailto:stupidityink@gmail.com">stupidityink@gmail.com</a></li>
                     </ul>
 
                     <div class="map-wrapper" style="margin-top: 30px;">
@@ -166,10 +169,69 @@
         
     </main>
 
-</body>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="images/WhatsApp Image 2025-11-10 at 9.11.43 PM.jpeg" alt="Stupidity Ink Logo">
+                </div>
+                <p class="footer-tagline">Every piece is a story. Crafted with care, precision and passion.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="#article">Article</a></li>
+                    <li><a href="#about">About & Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h4>Get In Touch</h4>
+                <p>📍 Chitwan, Nepal</p>
+                <p>📧 stupidityink@email.com</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/stupidity.iNk" aria-label="Facebook" title="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                    </a>
+                    <a href="www.instagram.com/stupidity.ink/" aria-label="Instagram" title="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@stupidity.ink.tattoo?_r=1&_t=ZS-941vNAxvJ3d" aria-label="TikTok" title="TikTok">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <p>&copy; 2026 Stupidity Ink. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
-        // Gallery Configuration - Preview Mode (6 images max)
-        const PREVIEW_LIMIT = 6;
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+    </script>
+
+    <!-- NEW PAGINATION & GALLERY SCRIPT -->
+    <script>
+        // Gallery Configuration
+        const IMAGES_PER_PAGE = 6; // Set to 6 per page
+        let currentPage = 1;
         let allImages = [];
         let siteConfig = null;
 
@@ -185,31 +247,33 @@
             }
         }
 
-        // Load images (from JSON + uploaded from database)
+        // Load all images (from JSON + uploaded from database)
         async function loadAllImages() {
-            // Load images from JSON config (managed via Decap CMS)
             const config = await loadImageConfig();
             
             if (config && config.gallery) {
+                // Mapping the images and reversing so the newest show first
                 allImages = config.gallery.map(img => ({
                     src: img.src,
                     alt: img.alt,
                     category: img.category
-                }));
+                })).reverse(); 
             }
 
-            renderGalleryPreview();
+            renderGallery();
+            updatePagination();
         }
 
-        // Render gallery preview (limited images - show newest first)
-        function renderGalleryPreview() {
+        // Render gallery for current page
+        function renderGallery() {
             const galleryGrid = document.getElementById('gallery-grid');
-            // Reverse to show newest images first on homepage
-            const previewImages = [...allImages].reverse().slice(0, PREVIEW_LIMIT);
+            const startIndex = (currentPage - 1) * IMAGES_PER_PAGE;
+            const endIndex = startIndex + IMAGES_PER_PAGE;
+            const pageImages = allImages.slice(startIndex, endIndex);
 
-            galleryGrid.innerHTML = previewImages.map((img, index) => `
+            galleryGrid.innerHTML = pageImages.map((img, index) => `
                 <div class="gallery-item">
-                    <a href="#" class="gallery-link" data-index="${index}">
+                    <a href="#" class="gallery-link" data-index="${startIndex + index}">
                         <img loading="lazy" 
                              src="${img.src}" 
                              data-full="${img.src}" 
@@ -219,6 +283,34 @@
             `).join('');
 
             initLightbox();
+        }
+
+        function changePage(delta) {
+            const totalPages = Math.ceil(allImages.length / IMAGES_PER_PAGE);
+            const newPage = currentPage + delta;
+            
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                renderGallery();
+                updatePagination();
+                // Scrolls smoothly to top of gallery when clicking next/prev
+                document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function updatePagination() {
+            const totalPages = Math.ceil(allImages.length / IMAGES_PER_PAGE);
+            const pageInfo = document.getElementById('pageInfo');
+            const prevBtn = document.getElementById('prevPage');
+            const nextBtn = document.getElementById('nextPage');
+            const pagination = document.getElementById('pagination');
+
+            pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+            
+            // Hide the pagination buttons completely if there are not enough images to fill page 2
+            pagination.style.display = totalPages <= 1 ? 'none' : 'flex';
         }
 
         // Lightbox functionality
@@ -231,8 +323,6 @@
             const nextBtn = document.getElementById('lightbox-next');
             let current = 0;
             let lastFocused = null;
-            // Use same reversed order as the preview
-            const previewImages = [...allImages].reverse().slice(0, PREVIEW_LIMIT);
 
             function open(index){
                 current = index;
@@ -245,8 +335,8 @@
                 lbImage.style.opacity = 0.01;
                 lbCaption.textContent = 'Loading...';
                 img.onload = function(){
-                    lbImage.src = previewImages[current].src;
-                    lbImage.alt = previewImages[current].alt || '';
+                    lbImage.src = allImages[current].src;
+                    lbImage.alt = allImages[current].alt || '';
                     lbCaption.textContent = '';
                     lbCaption.style.display = 'none';
                     lbImage.style.opacity = 1;
@@ -257,7 +347,7 @@
                     lbCaption.style.display = 'block';
                     lbImage.style.opacity = 1;
                 };
-                img.src = previewImages[current].src;
+                img.src = allImages[current].src;
             }
 
             function close(){
@@ -269,7 +359,7 @@
             }
 
             function showNext(delta){
-                current = (current + delta + previewImages.length) % previewImages.length;
+                current = (current + delta + allImages.length) % allImages.length;
                 open(current);
             }
 
@@ -334,62 +424,5 @@
             loadAllImages();
         });
     </script>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <img src="images/WhatsApp Image 2025-11-10 at 9.11.43 PM.jpeg" alt="Stupidity Ink Logo">
-                </div>
-                <p class="footer-tagline">Every piece is a story. Crafted with care, precision and passion.</p>
-            </div>
-            
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="#article">Article</a></li>
-                    <li><a href="#about">About & Contact</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-contact">
-                <h4>Get In Touch</h4>
-                <p>📍 Chitwan, Nepal</p>
-                <p>📧 stupidityink@email.com</p>
-                <div class="footer-social">
-                    <a href="https://www.facebook.com/stupidity.iNk" aria-label="Facebook" title="Facebook">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
-                    </a>
-                    <a href="www.instagram.com/stupidity.ink/" aria-label="Instagram" title="Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                    </a>
-                    <a href="https://www.tiktok.com/@stupidity.ink.tattoo?_r=1&_t=ZS-941vNAxvJ3d" aria-label="TikTok" title="TikTok">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <div class="footer-bottom-inner">
-                <p>&copy; 2026 Stupidity Ink. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Netlify Identity Widget -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script>
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin/";
-                    });
-                }
-            });
-        }
-    </script>
+</body>
 </html>
