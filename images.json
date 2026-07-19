@@ -67,6 +67,18 @@
       "src": "/images/img_2630.jpg.jpeg",
       "alt": "line tattoo",
       "category": "traditional"
+    },
+    {
+      "id": 11,
+      "src": "/images/img_1648.jpg",
+      "category": "custom",
+      "alt": "full back tattoo"
+    },
+    {
+      "id": 12,
+      "src": "/images/img_2049.jpg",
+      "alt": "limb tattoo",
+      "category": "portrait"
     }
   ],
   "blog": [
